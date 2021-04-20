@@ -11,13 +11,10 @@ function AddWilder() {
       onSubmit={async (e) => {
         e.preventDefault();
         try {
-          const result = await axios.post(
-            "http://localhost:5000/api/wilders",
-            {
-              name,
-              city,
-            }
-          );
+          const result = await axios.post("http://localhost:5000/api/wilders", {
+            name,
+            city,
+          });
           console.log(result);
           if (result.data.success) {
             setError("");

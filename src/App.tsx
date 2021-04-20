@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import { CardRow, Container, Footer, Header } from "./styles/elements";
-import Wilder from "./Wilder";
+import Wilder, { WilderProps } from "./Wilder";
 import AddWilder from "./AddWilder";
 
 function App() {
-  const [wilders, setWilders] = useState([]);
+  const [wilders, setWilders] = useState<WilderProps[]>([]);
 
   useEffect(() => {
     const fetchWilders = async () => {
@@ -34,8 +34,13 @@ function App() {
       <Container>
         <h2>Wilders</h2>
         <CardRow>
-          {wilders.map((wilder) => (
-            <Wilder key={wilder._id} {...wilder} />
+          {wilders.map((wilder, i) => (
+            <Wilder
+              key={i}
+              name={wilder.name}
+              skills={wilder.skills}
+              justAdded={wilder.justAdded}
+            />
           ))}
         </CardRow>
       </Container>
